@@ -1,0 +1,74 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load the traffic accidents data from the CSV file
+df = pd.read_csv('traffic_samples.csv')
+
+# Define the road conditions
+road_conditions = ['dry', 'wet', 'icy', 'snowy']
+
+# Define the weather conditions
+weather_conditions = ['sunny', 'cloudy', 'rainy', 'snowy']
+
+# Define the time of day
+times_of_day = ['morning', 'afternoon', 'evening', 'night']
+
+# Create a pivot table to analyze the accidents by road condition
+road_condition_pivot = pd.pivot_table(df, values='accidents', index='road_condition', aggfunc='count')
+print("Accidents by Road Condition:")
+print(road_condition_pivot)
+
+# Create a bar chart to display the accidents by road condition
+plt.bar(road_conditions, road_condition_pivot.values)
+plt.xlabel('Road Condition')
+plt.ylabel('Accidents')
+plt.title('Accidents by Road Condition')
+plt.show()
+
+# Create a pivot table to analyze the accidents by weather condition
+weather_pivot = pd.pivot_table(df, values='accidents', index='weather', aggfunc='count')
+print("Accidents by Weather Condition:")
+print(weather_pivot)
+
+# Create a bar chart to display the accidents by weather condition
+plt.bar(weather_conditions, weather_pivot.values)
+plt.xlabel('Weather Condition')
+plt.ylabel('Accidents')
+plt.title('Accidents by Weather Condition')
+plt.show()
+
+# Create a pivot table to analyze the accidents by time of day
+time_pivot = pd.pivot_table(df, values='accidents', index='time_of_day', aggfunc='count')
+print("Accidents by Time of Day:")
+print(time_pivot)
+
+# Create a bar chart to display the accidents by time of day
+plt.bar(times_of_day, time_pivot.values)
+plt.xlabel('Time of Day')
+plt.ylabel('Accidents')
+plt.title('Accidents by Time of Day')
+plt.show()
+
+# Create a pivot table to analyze the accidents by road condition and weather condition
+road_weather_pivot = pd.pivot_table(df, values='accidents', index='road_condition', columns='weather', aggfunc='count')
+print("Accidents by Road Condition and Weather Condition:")
+print(road_weather_pivot)
+
+# Create a heatmap to display the accidents by road condition and weather condition
+plt.pcolor(road_weather_pivot.values, cmap='Blues')
+plt.xlabel('Weather Condition')
+plt.ylabel('Road Condition')
+plt.title('Accidents by Road Condition and Weather Condition')
+plt.show()
+
+# Create a pivot table to analyze the accidents by road condition and time of day
+road_time_pivot = pd.pivot_table(df, values='accidents', index='road_condition', columns='time_of_day', aggfunc='count')
+print("Accidents by Road Condition and Time of Day:")
+print(road_time_pivot)
+
+# Create a heatmap to display the accidents by road condition and time of day
+plt.pcolor(road_time_pivot.values, cmap='Blues')
+plt.xlabel('Time of Day')
+plt.ylabel('Road Condition')
+plt.title('Accidents by Road Condition and Time of Day')
+plt.show()

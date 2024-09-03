@@ -1,0 +1,22 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+data = {'Gen': ['Male', 'Female', 'Male', 'Female', 'Male', 'Female'],
+    'Age': [25, 30, 35, 20, 40, 45]}
+df = pd.DataFrame(data)
+#(Gen) bar char
+
+
+plt.figure(figsize=(8, 6))
+df['Gen'].value_counts().plot(kind='bar')
+plt.title('Distribution of Gender')
+plt.xlabel('Gen')
+plt.ylabel('Count')
+plt.show()
+
+#(Age) bar chart
+plt.figure(figsize=(8, 6))
+df['Age'].plot(kind='hist', bins=4)
+plt.title('Distribution of Age')
+plt.xlabel('Age')
+plt.ylabel('Frequency')
+plt.show()
